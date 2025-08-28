@@ -110,8 +110,8 @@ export async function GET(request: Request) {
     },
     frame: withValidProperties({
       version: '1',
-      name: process.env.NEXT_PUBLIC_APP_NAME || 'Waya Mini App',
-      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE || 'Waya on Farcaster and Base',
+      name: process.env.NEXT_PUBLIC_APP_NAME || 'Lifi Mini App',
+      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE || 'Lifi on Farcaster and Base',
       description:
         process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
         'Waya Mini App powered by Li.Fi, available on Farcaster and Base.',
@@ -121,9 +121,9 @@ export async function GET(request: Request) {
       splashBackgroundColor: process.env.NEXT_PUBLIC_SPLASH_BACKGROUND_COLOR || '#FFFFFF',
       webhookUrl,
       primaryCategory: sanitizePrimaryCategory(process.env.NEXT_PUBLIC_APP_PRIMARY_CATEGORY, 'social'),
-      tags: tagsFromEnv.length ? tagsFromEnv : ['waya', 'miniapp', 'farcaster', 'base', 'lifi'],
+      tags: tagsFromEnv.length ? tagsFromEnv : [ 'miniapp', 'farcaster', 'base', 'lifi'],
       heroImageUrl,
-      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE || 'Trade across chains with Waya using Li.Fi',
+      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE || 'Trade across chains with using Li.Fi',
       screenshotUrls: screenshotUrlsFromEnv.length ? screenshotUrlsFromEnv : [`${origin}/screenshot.png`],
       ogTitle: process.env.NEXT_PUBLIC_APP_OG_TITLE,
       ogDescription: process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION,
