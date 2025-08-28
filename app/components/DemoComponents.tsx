@@ -16,6 +16,12 @@ import {
   TransactionStatus,
 } from "@coinbase/onchainkit/transaction";
 import { useNotification } from "@coinbase/onchainkit/minikit";
+import dynamic from "next/dynamic";
+
+const LiFiWidget = dynamic(
+  () => import("@lifi/widget").then((m) => m.LiFiWidget),
+  { ssr: false }
+);
 
 type ButtonProps = {
   children: ReactNode;
@@ -160,16 +166,10 @@ type HomeProps = {
 export function Home({ setActiveTab }: HomeProps) {
   return (
     <div className="space-y-6 animate-fade-in">
-      <Card title="My First Mini App">
-        <p className="text-[var(--app-foreground-muted)] mb-4">
-          This is a minimalistic Mini App built with OnchainKit components.
-        </p>
-        <Button
-          onClick={() => setActiveTab("features")}
-          icon={<Icon name="arrow-right" size="sm" />}
-        >
-          Explore Features
-        </Button>
+      <Card title="Bridge & Swap with LI.FI">
+        <div className="w-full">
+          <LiFiWidget integrator="lifi-mini-v2" />
+        </div>
       </Card>
 
       <TodoList />
