@@ -2,6 +2,7 @@
 
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { useAccount } from "wagmi";
+import { base, celo, arbitrum } from "wagmi/chains";
 import {
   Transaction,
   TransactionButton,
