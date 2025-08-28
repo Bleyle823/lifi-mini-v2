@@ -30,34 +30,7 @@ The environment variables enable the following features:
 - Account association - Allows users to add your frame to their account, enables notifications
 - Redis API keys - Enable Webhooks and background notifications for your application by storing users notification details
 
-```bash
-# Shared/OnchainKit variables
-NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME=LiFi Mini
-NEXT_PUBLIC_URL=http://localhost:3000
-NEXT_PUBLIC_ICON_URL=http://localhost:3000/logo.png
-NEXT_PUBLIC_ONCHAINKIT_API_KEY=REPLACE_WITH_ONCHAINKIT_API_KEY
 
-# Frame metadata
-FARCASTER_HEADER=
-FARCASTER_PAYLOAD=
-FARCASTER_SIGNATURE=
-NEXT_PUBLIC_APP_ICON=http://localhost:3000/icon.png
-NEXT_PUBLIC_APP_SUBTITLE=Bridge and swap with LiFi
-NEXT_PUBLIC_APP_DESCRIPTION=Bridge and swap assets across chains using LiFi
-NEXT_PUBLIC_SPLASH_IMAGE=http://localhost:3000/splash.png
-NEXT_PUBLIC_APP_SPLASH_IMAGE=http://localhost:3000/splash.png
-NEXT_PUBLIC_SPLASH_BACKGROUND_COLOR=#0a0a0a
-NEXT_PUBLIC_APP_PRIMARY_CATEGORY=Finance
-NEXT_PUBLIC_APP_HERO_IMAGE=http://localhost:3000/hero.png
-NEXT_PUBLIC_APP_TAGLINE=Bridge, swap, go cross-chain.
-NEXT_PUBLIC_APP_OG_TITLE=LiFi Mini
-NEXT_PUBLIC_APP_OG_DESCRIPTION=Bridge and swap assets across chains using LiFi in a Mini App.
-NEXT_PUBLIC_APP_OG_IMAGE=http://localhost:3000/screenshot.png
-
-# Redis config
-REDIS_URL=
-REDIS_TOKEN=
-```
 
 3. Start the development server:
 ```bash
