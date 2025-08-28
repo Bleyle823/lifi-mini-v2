@@ -108,6 +108,11 @@ export async function GET(request: Request) {
       signature:
         process.env.FARCASTER_SIGNATURE || process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || ''
     },
+    baseBuilder: {
+      allowedAddresses: [
+        '0xB46476564654446BAC73381fa7804CD558609511'
+      ]
+    },
     frame: withValidProperties({
       version: '1',
       name: process.env.NEXT_PUBLIC_APP_NAME || 'Lifi Mini App',
