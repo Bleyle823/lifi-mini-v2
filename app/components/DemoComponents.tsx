@@ -166,7 +166,22 @@ type HomeProps = {
 export function Home() {
   return (
     <div className="w-full">
-      <LiFiWidget integrator="lifi-mini-v2" />
+      <LiFiWidget
+        config={{
+          integrator: "lifi-mini-v2",
+          // Restrict to Base to ensure Farcaster wallet can sign without chain switch issues
+          chains: {
+            from: { allow: [8453] },
+            to: { allow: [8453] },
+          },
+          // Ensure the widget relies solely on the external (MiniKit/Wagmi) wallet
+          walletConfig: {
+            usePartialWalletManagement: false,
+          },
+          // Optional: hide chain selector to avoid picking unsupported chains in Mini
+          hiddenUI: ["chainSelect"],
+        }}
+      />
     </div>
   );
 }
