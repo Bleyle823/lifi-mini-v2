@@ -17,6 +17,47 @@ Technologies used:
 - [Tailwind CSS](https://tailwindcss.com)
 - [Next.js](https://nextjs.org/docs)
 
+## Environment Configuration for Farcaster Integration
+
+To ensure proper transaction signing in Farcaster, you need to configure the following environment variables:
+
+### Required Environment Variables
+
+1. **OnchainKit Configuration:**
+   ```bash
+   NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_onchainkit_api_key_here
+   NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME=LiFi Mini
+   NEXT_PUBLIC_URL=https://your-domain.com
+   NEXT_PUBLIC_APP_HERO_IMAGE=https://your-domain.com/hero.png
+   NEXT_PUBLIC_ICON_URL=https://your-domain.com/icon.png
+   NEXT_PUBLIC_SPLASH_IMAGE=https://your-domain.com/splash.png
+   NEXT_PUBLIC_SPLASH_BACKGROUND_COLOR=#000000
+   ```
+
+2. **Farcaster Account Association (for notifications):**
+   ```bash
+   FARCASTER_HEADER=your_farcaster_header
+   FARCASTER_PAYLOAD=your_farcaster_payload
+   FARCASTER_SIGNATURE=your_farcaster_signature
+   ```
+
+3. **Redis Configuration (for background notifications):**
+   ```bash
+   UPSTASH_REDIS_REST_URL=your_redis_url_here
+   UPSTASH_REDIS_REST_TOKEN=your_redis_token_here
+   ```
+
+### Wallet Connection Setup
+
+The app is configured to work with Farcaster's built-in wallet connection system. The LiFi widget will automatically use the wallet connection established by the OnchainKit wallet components.
+
+### Transaction Signing
+
+Transactions are signed through Farcaster's native transaction signing flow. The MiniKit provider ensures that:
+- Wallet connections are properly established
+- Transaction prompts are displayed in the Farcaster interface
+- Transaction status is properly tracked
+
 ## Getting Started
 
 1. Install dependencies:
