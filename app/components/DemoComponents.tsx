@@ -1,15 +1,15 @@
 "use client";
 
-import { type ReactNode, useCallback, useMemo, useState } from "react";
-import { useAccount } from "wagmi";
+import { type ReactNode, useCallback, useMemo, useState, useEffect } from "react";
+import { useAccount, useDisconnect } from "wagmi";
 import { base, celo, arbitrum } from "wagmi/chains";
 import {
   Transaction,
   TransactionButton,
   TransactionToast,
-  TransactionToastAction,
   TransactionToastIcon,
   TransactionToastLabel,
+  TransactionToastAction,
   TransactionError,
   TransactionResponse,
   TransactionStatusAction,
@@ -18,11 +18,70 @@ import {
 } from "@coinbase/onchainkit/transaction";
 import { useNotification } from "@coinbase/onchainkit/minikit";
 import dynamic from "next/dynamic";
+import { formatWalletAddress, getWalletErrorMessage, retryWithBackoff } from "../../lib/wallet-utils";
 
 const LiFiWidget = dynamic(
   () => import("@lifi/widget").then((m) => m.LiFiWidget),
   { ssr: false }
 );
+
+// Custom hook for wallet connection management
+function useWalletConnection() {
+  const { address, isConnected, isConnecting } = useAccount();
+  const { disconnect } = useDisconnect();
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+
+  // Auto-reconnect logic for mini apps
+  useEffect(() => {
+    if (!isConnected && !isConnecting && retryCount < 3) {
+      const timer = setTimeout(() => {
+        setRetryCount(prev => prev + 1);
+        // Trigger reconnection attempt
+        window.location.reload();
+      }, 2000 * (retryCount + 1));
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isConnected, isConnecting, retryCount]);
+
+  // Reset error state when connection is successful
+  useEffect(() => {
+    if (isConnected) {
+      setConnectionError(null);
+      setRetryCount(0);
+    }
+  }, [isConnected]);
+
+  const handleDisconnect = useCallback(async () => {
+    try {
+      await retryWithBackoff(async () => {
+        disconnect();
+        setConnectionError(null);
+        setRetryCount(0);
+      }, { maxRetries: 2, baseDelay: 500 });
+    } catch (error) {
+      console.error("Disconnect error:", error);
+      setConnectionError(getWalletErrorMessage(error));
+    }
+  }, [disconnect]);
+
+  const resetConnection = useCallback(() => {
+    setConnectionError(null);
+    setRetryCount(0);
+    window.location.reload();
+  }, []);
+
+  return {
+    address,
+    isConnected,
+    isConnecting,
+    connectionError,
+    retryCount,
+    handleDisconnect,
+    resetConnection,
+  };
+}
 
 type ButtonProps = {
   children: ReactNode;
@@ -165,7 +224,44 @@ type HomeProps = {
 };
 
 export function Home() {
-  const { address, isConnected } = useAccount();
+  const {
+    address,
+    isConnected,
+    isConnecting,
+    connectionError,
+    retryCount,
+    resetConnection,
+  } = useWalletConnection();
+
+  // Show connection error and retry options
+  if (connectionError) {
+    return (
+      <div className="text-center py-8">
+        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-6 mb-4">
+          <p className="text-red-400 mb-4">{connectionError}</p>
+          <Button onClick={resetConnection} variant="primary">
+            Retry Connection
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show retry connection message
+  if (retryCount > 0 && !isConnected) {
+    return (
+      <div className="text-center py-8">
+        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6 mb-4">
+          <p className="text-yellow-400 mb-4">
+            Connection attempt {retryCount}/3. Retrying in a few seconds...
+          </p>
+          <Button onClick={resetConnection} variant="outline">
+            Retry Now
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -174,16 +270,41 @@ export function Home() {
           <p className="text-[var(--app-foreground-muted)] mb-4">
             Connect your wallet to start swapping and bridging
           </p>
+          {isConnecting && (
+            <div className="text-[var(--app-accent)] text-sm">
+              Connecting wallet...
+            </div>
+          )}
         </div>
       ) : (
-        <LiFiWidget 
-          integrator="lifi-mini-v2"
-          config={{
-            chains: {
-              allow: [base.id, celo.id, arbitrum.id],
-            },
-          }}
-        />
+        <div className="space-y-4">
+          {/* Connection status indicator */}
+          <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+            <div className="flex items-center justify-between">
+              <span className="text-green-400 text-sm">
+                ✓ Wallet connected: {address ? formatWalletAddress(address) : 'Unknown'}
+              </span>
+              <Button 
+                onClick={resetConnection} 
+                variant="ghost" 
+                size="sm"
+                className="text-green-400 hover:text-green-300"
+              >
+                Refresh
+              </Button>
+            </div>
+          </div>
+          
+          {/* LiFi Widget */}
+          <LiFiWidget 
+            integrator="lifi-mini-v2"
+            config={{
+              chains: {
+                allow: [base.id, celo.id, arbitrum.id],
+              },
+            }}
+          />
+        </div>
       )}
     </div>
   );
