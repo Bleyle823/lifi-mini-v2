@@ -21,6 +21,9 @@ export default function App() {
       <div className="w-full max-w-md mx-auto px-4 py-3">
         <header className="flex justify-between items-center mb-3 h-11">
           <div>
+            <img src="/logo_lifi_light.svg" alt="LI.FI" className="h-6 w-auto" />
+          </div>
+          <div>
             <div className="flex items-center space-x-2">
               <Wallet className="z-10">
                 <ConnectWallet>
@@ -37,9 +40,6 @@ export default function App() {
                 </WalletDropdown>
               </Wallet>
             </div>
-          </div>
-          <div>
-            <img src="/logo_lifi_light.svg" alt="LI.FI" className="h-6 w-auto" />
           </div>
         </header>
 
