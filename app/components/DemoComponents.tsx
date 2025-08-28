@@ -163,18 +163,10 @@ type HomeProps = {
   setActiveTab: (tab: string) => void;
 };
 
-export function Home({ setActiveTab }: HomeProps) {
+export function Home() {
   return (
-    <div className="space-y-6 animate-fade-in">
-      <Card title="Bridge & Swap with LI.FI">
-        <div className="w-full">
-          <LiFiWidget integrator="lifi-mini-v2" />
-        </div>
-      </Card>
-
-      <TodoList />
-
-      <TransactionCard />
+    <div className="w-full">
+      <LiFiWidget integrator="lifi-mini-v2" />
     </div>
   );
 }
