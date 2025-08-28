@@ -17,6 +17,7 @@ import {
   TransactionStatus,
 } from "@coinbase/onchainkit/transaction";
 import { useNotification } from "@coinbase/onchainkit/minikit";
+import { useAccount } from "wagmi";
 import dynamic from "next/dynamic";
 
 const LiFiWidget = dynamic(
@@ -172,10 +173,6 @@ export function Home() {
         config={{
           chains: {
             allow: [base.id, celo.id, arbitrum.id],
-          },
-          wallet: {
-            autoConnect: true,
-            walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
           },
         }}
       />
