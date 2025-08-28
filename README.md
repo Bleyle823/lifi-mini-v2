@@ -1,9 +1,19 @@
-# MiniKit Template
+# LiFi Mini — Cross‑Chain Swap & Bridge Frame
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-onchain --mini`](), configured with:
+This project is a [Next.js](https://nextjs.org) application that embeds the [Li.Fi Widget](https://widget.lifi.io) to enable seamless cross‑chain swaps and bridging. It is built for Farcaster Frames using [MiniKit](https://docs.base.org/builderkits/minikit/overview) and [OnchainKit](https://www.base.org/builders/onchainkit).
 
+– Swap and bridge assets across multiple chains with one UX
+– Fully frame‑enabled with account association and notifications
+– Styled with Tailwind and themeable to your brand
+
+Important:
+- Supports cross‑chain swap and bridge on Base, Celo, and Arbitrum (emphasis by design of this app)
+- Featured in the ongoing Base Onchain Summer
+
+Technologies used:
 - [MiniKit](https://docs.base.org/builderkits/minikit/overview)
 - [OnchainKit](https://www.base.org/builders/onchainkit)
+- [Li.Fi Widget](https://widget.lifi.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Next.js](https://nextjs.org/docs)
 
@@ -20,7 +30,7 @@ pnpm install
 bun install
 ```
 
-2. Verify environment variables, these will be set up by the `npx create-onchain --mini` command:
+2. Verify environment variables (Farcaster account association, Frame metadata, Redis): these are typically set up by `npx create-onchain --mini`.
 
 You can regenerate the FARCASTER Account Association environment variables by running `npx create-onchain --manifest` in your project directory.
 
@@ -37,7 +47,12 @@ The environment variables enable the following features:
 npm run dev
 ```
 
-## Template Features
+## Features
+
+### Cross‑Chain Swaps and Bridging
+- Embedded [Li.Fi Widget](https://widget.lifi.io) for cross‑chain swap and bridge flows
+- Supported networks highlighted in this app: Base, Celo, Arbitrum
+- Unified, user‑friendly UX for routing, bridges, and DEX aggregation
 
 ### Frame Configuration
 - `.well-known/farcaster.json` endpoint configured for Frame metadata and account association
@@ -74,7 +89,11 @@ To get started building your own frame, follow these steps:
    - Update theme variables in `theme.css`
    - Adjust MiniKit configuration in `providers.tsx`
 
-3. Add your frame to your account:
+3. Configure the Li.Fi Widget for your chains:
+   - Ensure Base, Celo, and Arbitrum are enabled in your widget configuration (if using an allowlist) and adjust defaults as needed
+   - Customize token lists, appearance, and routing preferences per your UX goals
+
+4. Add your frame to your account:
    - Cast your frame to see it in action
    - Share your frame with others to start building your community
 
@@ -82,5 +101,6 @@ To get started building your own frame, follow these steps:
 
 - [MiniKit Documentation](https://docs.base.org/builderkits/minikit/overview)
 - [OnchainKit Documentation](https://docs.base.org/builderkits/onchainkit/getting-started)
+- [Li.Fi Widget Docs](https://docs.li.fi/widget/introduction)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
