@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useState } from "react";
-import { base } from "wagmi/chains";
+import { base, celo, arbitrum } from "wagmi/chains";
 import { MiniKitProvider } from "@coinbase/onchainkit/minikit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

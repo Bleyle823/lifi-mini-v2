@@ -2,6 +2,7 @@
 
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { useAccount } from "wagmi";
+import { base, celo, arbitrum } from "wagmi/chains";
 import {
   Transaction,
   TransactionButton,
@@ -166,7 +167,14 @@ type HomeProps = {
 export function Home() {
   return (
     <div className="w-full">
-      <LiFiWidget integrator="lifi-mini-v2" />
+      <LiFiWidget 
+        integrator="lifi-mini-v2"
+        config={{
+          chains: {
+            allow: [base.id, celo.id, arbitrum.id],
+          },
+        }}
+      />
     </div>
   );
 }
