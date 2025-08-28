@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useState } from "react";
-import { base } from "wagmi/chains";
+import { base, celo, arbitrum } from "wagmi/chains";
 import { MiniKitProvider } from "@coinbase/onchainkit/minikit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -19,6 +19,8 @@ export function Providers(props: { children: ReactNode }) {
             name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
             logo: process.env.NEXT_PUBLIC_ICON_URL,
           },
+          chains: [base, celo, arbitrum],
+          walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
         }}
       >
         {props.children}
