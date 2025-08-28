@@ -173,6 +173,10 @@ export function Home() {
           chains: {
             allow: [base.id, celo.id, arbitrum.id],
           },
+          wallet: {
+            autoConnect: true,
+            walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
+          },
         }}
       />
     </div>
