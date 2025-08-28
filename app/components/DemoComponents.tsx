@@ -17,7 +17,6 @@ import {
   TransactionStatus,
 } from "@coinbase/onchainkit/transaction";
 import { useNotification } from "@coinbase/onchainkit/minikit";
-import { useAccount } from "wagmi";
 import dynamic from "next/dynamic";
 
 const LiFiWidget = dynamic(
@@ -166,16 +165,26 @@ type HomeProps = {
 };
 
 export function Home() {
+  const { address, isConnected } = useAccount();
+
   return (
     <div className="w-full">
-      <LiFiWidget 
-        integrator="lifi-mini-v2"
-        config={{
-          chains: {
-            allow: [base.id, celo.id, arbitrum.id],
-          },
-        }}
-      />
+      {!isConnected ? (
+        <div className="text-center py-8">
+          <p className="text-[var(--app-foreground-muted)] mb-4">
+            Connect your wallet to start swapping and bridging
+          </p>
+        </div>
+      ) : (
+        <LiFiWidget 
+          integrator="lifi-mini-v2"
+          config={{
+            chains: {
+              allow: [base.id, celo.id, arbitrum.id],
+            },
+          }}
+        />
+      )}
     </div>
   );
 }
