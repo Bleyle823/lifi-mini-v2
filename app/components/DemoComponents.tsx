@@ -173,15 +173,6 @@ export function Home() {
           chains: {
             allow: [base.id, celo.id, arbitrum.id],
           },
-          wallet: {
-            autoConnect: true,
-          },
-          appearance: {
-            theme: 'dark',
-            borderRadius: 12,
-          },
-          variant: 'default',
-          subvariant: 'default',
         }}
       />
     </div>
