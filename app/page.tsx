@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import {
   Name,
   Identity,
@@ -16,6 +18,16 @@ import {
 import { Home } from "./components/DemoComponents";
 
 export default function App() {
+  const { ready } = useMiniKit();
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      try {
+        ready?.();
+      } catch {}
+    }, 0);
+    return () => clearTimeout(t);
+  }, [ready]);
   return (
     <div className="flex flex-col min-h-screen font-sans text-[var(--app-foreground)] mini-app-theme from-[var(--app-background)] to-[var(--app-gray)]">
       <div className="w-full max-w-md mx-auto px-4 py-3">
