@@ -1,63 +1,101 @@
-# LiFi Base Mini App 🌉
+#### Arbitrum Network
+- ETH (Native)
+- USDC
+- USDT
+- ARB
+- WETH# LiFi Mini — Cross‑Chain Swap & Bridge Frame 🌉
 
-A powerful cross-chain bridging and swapping mini application built on top of LiFi Protocol, designed specifically for seamless asset transfers and exchanges on **Base** and **Celo** networks.
+A [Next.js](https://nextjs.org) Farcaster Frame application that embeds the [Li.Fi Widget](https://widget.lifi.io) to enable seamless cross‑chain swaps and bridging. Built for Farcaster Frames using [MiniKit](https://docs.base.org/builderkits/minikit/overview) and [OnchainKit](https://www.base.org/builders/onchainkit).
 
-> 🏖️ **Part of Base Onchain Summer** - Building the future of cross-chain DeFi experiences
+> 🏖️ **Featured in Base Onchain Summer** - Building the future of cross-chain DeFi experiences within Farcaster
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Base Network](https://img.shields.io/badge/Network-Base-blue)](https://base.org)
 [![Celo Network](https://img.shields.io/badge/Network-Celo-green)](https://celo.org)
+[![Arbitrum Network](https://img.shields.io/badge/Network-Arbitrum-orange)](https://arbitrum.io)
 [![LiFi Protocol](https://img.shields.io/badge/Powered%20by-LiFi-purple)](https://li.fi)
+[![Farcaster Frame](https://img.shields.io/badge/Farcaster-Frame-9333ea)](https://www.farcaster.xyz/)
 
 ## 🌟 Features
 
-### 🔄 Cross-Chain Swapping
-- **Native Base Support**: Seamless token swaps on Base network with optimal routing
-- **Celo Integration**: Full support for Celo ecosystem tokens and DeFi protocols
-- **Multi-DEX Aggregation**: Access to multiple DEXs for best swap rates
+### 🔄 Cross-Chain Swapping & Bridging
+- **Embedded Li.Fi Widget**: Full-featured widget integration for seamless cross-chain operations
+- **Base Network Support**: Native support for Base ecosystem with optimal routing
+- **Celo Integration**: Full support for Celo mobile-first DeFi protocols  
+- **Arbitrum Support**: Complete Arbitrum network integration for L2 efficiency
+- **Multi-DEX Aggregation**: Access to multiple DEXs across all supported chains for best rates
+- **Unified UX**: Single interface for routing, bridges, and DEX aggregation
 - **Slippage Protection**: Configurable slippage tolerance for secure transactions
 
-### 🌉 Cross-Chain Bridging
-- **Base ↔ Celo**: Direct bridging between Base and Celo networks
-- **Multi-Chain Support**: Bridge assets across 20+ supported chains
-- **Fast Settlements**: Optimized routing for minimal bridge times
-- **Low Fees**: Cost-effective cross-chain transfers
+### 🖼️ Farcaster Frame Features
+- **Native Frame Integration**: Built specifically for Farcaster ecosystem
+- **Account Association**: Users can add the frame to their Farcaster accounts
+- **Frame Metadata**: Automatic setup of Frame embed metadata
+- **Cast Integration**: Seamlessly works within Farcaster casts
+- **Social DeFi**: Brings cross-chain swapping directly to social interactions
 
-### ⚡ Performance & UX
-- **Instant Quotes**: Real-time pricing and route optimization
-- **Transaction Tracking**: Live status updates for all operations
-- **Mobile Optimized**: Responsive design for mobile-first experience
-- **Wallet Integration**: Support for popular Web3 wallets
+### 🔔 Background Notifications
+- **Redis-Backed System**: Upstash Redis integration for reliable notifications  
+- **Webhook Support**: Ready-to-use notification endpoints
+- **Transaction Updates**: Real-time notifications for swap and bridge status
+- **User Engagement**: Keep users informed of their cross-chain operations
+
+### 🎨 Theming & Design
+- **Custom Theming**: Fully customizable theme with OnchainKit variables
+- **Pixel Font Integration**: Pixelify Sans font for unique visual identity
+- **Dark/Light Mode**: Complete theme switching support
+- **Mobile Optimized**: Responsive design optimized for mobile Farcaster clients
+- **Brand Customization**: Easy theming to match your project's brand
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
-- Web3 wallet (MetaMask, Coinbase Wallet, etc.)
+- npm, yarn, pnpm, or bun
+- Farcaster developer account
+- Upstash Redis account (for notifications)
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/lifi-base-mini-app.git
+# Create the project using OnchainKit CLI
+npx create-onchain --mini
+
+# Or clone this repository
+git clone https://github.com/yourusername/lifi-frame-mini-app.git
 
 # Navigate to project directory
-cd lifi-base-mini-app
+cd lifi-frame-mini-app
 
-# Install dependencies
+# Install dependencies (choose one)
 npm install
-
-# Set up environment variables
-cp .env.example .env.local
+# or
+yarn install  
+# or
+pnpm install
+# or
+bun install
 ```
 
 ### Environment Setup
 
+The environment variables are typically set up automatically when using `npx create-onchain --mini`. 
+
 Create a `.env.local` file with the following variables:
 
 ```env
+# Farcaster Frame Configuration
+FARCASTER_DEVELOPER_FID=your_farcaster_fid
+FARCASTER_DEVELOPER_MNEMONIC=your_mnemonic_phrase
+
+# Frame Metadata
+NEXT_PUBLIC_URL=https://your-domain.com
+
+# Redis Configuration (Upstash)
+UPSTASH_REDIS_REST_URL=your_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_redis_token
+
 # LiFi API Configuration
 NEXT_PUBLIC_LIFI_API_URL=https://li.quest/v1
 NEXT_PUBLIC_LIFI_WIDGET_API_KEY=your_lifi_api_key
@@ -65,13 +103,13 @@ NEXT_PUBLIC_LIFI_WIDGET_API_KEY=your_lifi_api_key
 # Network Configuration
 NEXT_PUBLIC_BASE_RPC_URL=https://mainnet.base.org
 NEXT_PUBLIC_CELO_RPC_URL=https://forno.celo.org
+NEXT_PUBLIC_ARBITRUM_RPC_URL=https://arb1.arbitrum.io/rpc
 
-# Wallet Connect Configuration
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
-
-# Analytics (Optional)
-NEXT_PUBLIC_ANALYTICS_ID=your_analytics_id
+# OnchainKit Configuration
+NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_onchainkit_api_key
 ```
+
+> **Tip**: You can regenerate Farcaster Account Association environment variables by running `npx create-onchain --manifest` in your project directory.
 
 ### Development
 
@@ -94,41 +132,45 @@ npm run lint
 ### Tech Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS, Headless UI
-- **Web3**: Wagmi, Viem, RainbowKit
-- **State Management**: Zustand
-- **API Integration**: LiFi SDK, TanStack Query
-- **Testing**: Jest, React Testing Library
+- **Frame SDK**: MiniKit, OnchainKit
+- **Styling**: Tailwind CSS, Custom theme with Pixelify Sans font
+- **Cross-Chain**: Li.Fi Widget, Li.Fi SDK
+- **Notifications**: Upstash Redis, Background webhooks
+- **Deployment**: Vercel (recommended for Frame hosting)
 
 ### Project Structure
 
 ```
 ├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── bridge/         # Bridge-specific components
-│   │   ├── swap/           # Swap-specific components
-│   │   └── ui/             # Generic UI components
-│   ├── hooks/              # Custom React hooks
-│   ├── lib/                # Utility functions and configs
-│   ├── pages/              # Next.js pages
-│   ├── store/              # Zustand stores
-│   └── types/              # TypeScript type definitions
-├── public/                 # Static assets
-├── docs/                   # Documentation
-└── tests/                  # Test files
+│   ├── app/                    # Next.js app directory
+│   │   ├── api/               # API routes
+│   │   │   ├── notify/        # Notification endpoints  
+│   │   │   └── webhook/       # Webhook handlers
+│   │   ├── .well-known/       # Farcaster frame metadata
+│   │   └── layout.tsx         # Root layout with frame metadata
+│   ├── components/            # React components
+│   │   ├── DemoComponents.tsx # Demo components (remove when customizing)
+│   │   └── ui/               # Reusable UI components
+│   ├── lib/                  # Utility functions
+│   │   └── notification-client.ts # Notification utilities
+│   ├── styles/               # Styling
+│   │   └── theme.css         # Custom OnchainKit theme
+│   └── providers.tsx         # MiniKit and OnchainKit providers
+├── public/                   # Static assets
+└── README.md                # This file
 ```
 
 ## 🔧 Configuration
 
 ### Supported Networks
 
-| Network | Chain ID | Native Token | Status |
-|---------|----------|--------------|--------|
-| Base    | 8453     | ETH          | ✅ Full Support |
-| Celo    | 42220    | CELO         | ✅ Full Support |
-| Ethereum| 1        | ETH          | ✅ Bridging Only |
-| Polygon | 137      | MATIC        | ✅ Bridging Only |
-| Arbitrum| 42161    | ETH          | ✅ Bridging Only |
+| Network | Chain ID | Native Token | Status | Frame Support |
+|---------|----------|--------------|--------|---------------|
+| Base    | 8453     | ETH          | ✅ Full Support | ✅ Optimized |
+| Celo    | 42220    | CELO         | ✅ Full Support | ✅ Optimized |
+| Arbitrum| 42161    | ETH          | ✅ Full Support | ✅ Optimized |
+| Ethereum| 1        | ETH          | ✅ Bridging | ⚡ Available |
+| Polygon | 137      | MATIC        | ✅ Bridging | ⚡ Available |
 
 ### Supported Tokens
 
@@ -148,55 +190,44 @@ npm run lint
 
 ## 📖 Usage
 
-### Basic Swapping
+### Setting Up Your Frame
 
-```javascript
-import { useSwap } from '@/hooks/useSwap';
+1. **Remove Demo Components** (when ready to customize):
+```bash
+# Delete the demo components
+rm src/components/DemoComponents.tsx
 
-function SwapComponent() {
-  const { executeSwap, isLoading } = useSwap();
-
-  const handleSwap = async () => {
-    await executeSwap({
-      fromToken: 'ETH',
-      toToken: 'USDC',
-      amount: '1',
-      chainId: 8453, // Base
-    });
-  };
-
-  return (
-    <button onClick={handleSwap} disabled={isLoading}>
-      {isLoading ? 'Swapping...' : 'Swap ETH to USDC'}
-    </button>
-  );
-}
+# Update page.tsx to remove demo imports
 ```
 
-### Cross-Chain Bridging
-
+2. **Configure Li.Fi Widget** for your specific needs:
 ```javascript
-import { useBridge } from '@/hooks/useBridge';
-
-function BridgeComponent() {
-  const { executeBridge, isLoading } = useBridge();
-
-  const handleBridge = async () => {
-    await executeBridge({
-      fromChain: 8453,    // Base
-      toChain: 42220,     // Celo
-      token: 'USDC',
-      amount: '100',
-    });
-  };
-
-  return (
-    <button onClick={handleBridge} disabled={isLoading}>
-      {isLoading ? 'Bridging...' : 'Bridge USDC to Celo'}
-    </button>
-  );
-}
+// Ensure Base, Celo, and Arbitrum are enabled in widget config
+const widgetConfig = {
+  fromChain: 8453, // Base
+  toChain: 42220,  // Celo  
+  fromToken: 'ETH',
+  toToken: 'CELO',
+  // Add your custom configuration
+};
 ```
+
+3. **Deploy and Test**:
+```bash
+# Build and deploy your frame
+npm run build
+vercel --prod
+
+# Test your frame in Farcaster
+# Cast your frame URL to see it in action
+```
+
+### Adding to Farcaster Account
+
+Users can add your frame to their Farcaster account for:
+- Easy access from their account
+- Background notifications for transaction updates  
+- Personalized frame experience
 
 ## 🧪 Testing
 
@@ -227,7 +258,9 @@ The app includes comprehensive testing for:
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel (Recommended for Frames)
+
+Farcaster Frames work best when deployed on Vercel due to their edge network and frame optimization.
 
 ```bash
 # Install Vercel CLI
@@ -235,36 +268,30 @@ npm i -g vercel
 
 # Deploy to Vercel
 vercel --prod
-```
 
-### Docker
-
-```bash
-# Build Docker image
-docker build -t lifi-base-app .
-
-# Run container
-docker run -p 3000:3000 lifi-base-app
+# Ensure your domain is accessible for frame metadata
 ```
 
 ### Environment Variables for Production
 
 Ensure the following environment variables are set in your production environment:
 
-- `NEXT_PUBLIC_LIFI_API_KEY`
-- `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`
-- `NEXT_PUBLIC_BASE_RPC_URL`
-- `NEXT_PUBLIC_CELO_RPC_URL`
+- `FARCASTER_DEVELOPER_FID`
+- `FARCASTER_DEVELOPER_MNEMONIC`  
+- `NEXT_PUBLIC_URL`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+- `NEXT_PUBLIC_LIFI_WIDGET_API_KEY`
+- `NEXT_PUBLIC_ONCHAINKIT_API_KEY`
 
 ## 🔐 Security
 
-### Best Practices Implemented
+### Frame-Specific Security
 
-- **Input Validation**: All user inputs are validated and sanitized
-- **Rate Limiting**: API calls are rate-limited to prevent abuse
-- **Secure Storage**: Sensitive data is never stored in localStorage
-- **Transaction Verification**: All transactions are verified on-chain
-- **Slippage Protection**: Built-in protection against MEV attacks
+- **Frame Validation**: All frame interactions are validated through Farcaster protocol
+- **Account Association**: Secure user account linking with proper verification
+- **Notification Security**: Redis-backed notifications with proper authentication
+- **Cross-Chain Security**: Built-in Li.Fi protocol security for all bridge operations
 
 ### Audit Status
 
@@ -332,6 +359,23 @@ Please use the [GitHub Issues](https://github.com/yourusername/lifi-base-mini-ap
 - [ ] Social trading features
 - [ ] API for third-party integrations
 
+## 📚 Learn More
+
+### Documentation Links
+
+- **[MiniKit Documentation](https://docs.base.org/builderkits/minikit/overview)** - Build Farcaster Frames
+- **[OnchainKit Documentation](https://docs.base.org/builderkits/onchainkit/getting-started)** - Onchain app development  
+- **[Li.Fi Widget Docs](https://docs.li.fi/widget/introduction)** - Cross-chain widget integration
+- **[Farcaster Frames](https://docs.farcaster.xyz/developers/frames/spec)** - Frame specification
+- **[Next.js Documentation](https://nextjs.org/docs)** - React framework
+- **[Tailwind CSS](https://tailwindcss.com/docs)** - Styling framework
+
+### Tutorials & Guides
+
+- [Building Your First Farcaster Frame](https://docs.base.org/tutorials/farcaster-frames-nft-minting)
+- [Cross-Chain DeFi with Li.Fi](https://docs.li.fi/integrate-li.fi/integrate-li.fi-widget)
+- [OnchainKit Theme Customization](https://docs.base.org/builderkits/onchainkit/theming)
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -339,31 +383,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Base Team** - For building an amazing L2 and hosting Onchain Summer
-- **Celo Foundation** - For the vibrant mobile-first ecosystem
+- **Celo Foundation** - For the vibrant mobile-first ecosystem  
+- **Arbitrum Foundation** - For the efficient L2 scaling solution
 - **LiFi Protocol** - For providing the best cross-chain infrastructure
-- **Base Onchain Summer** - For supporting innovative DeFi projects
+- **Farcaster Team** - For building the future of decentralized social
+- **Base Onchain Summer** - For featuring innovative DeFi Frame projects
 - **Open Source Community** - For the amazing tools and libraries
 
 ## 📞 Support
 
-### Community
+### Community & Social
 
+- **Farcaster**: Cast [@yourhandle](https://warpcast.com/yourhandle)  
 - **Discord**: [Join our community](https://discord.gg/your-server)
 - **Twitter**: [@YourProject](https://twitter.com/yourproject)
 - **Telegram**: [Community Chat](https://t.me/yourproject)
 
-### Documentation
+### Frame Testing
 
-- **LiFi Docs**: [https://docs.li.fi](https://docs.li.fi)
-- **Base Docs**: [https://docs.base.org](https://docs.base.org)
-- **Celo Docs**: [https://docs.celo.org](https://docs.celo.org)
-
-### Contact
-
-For business inquiries and partnerships: hello@yourproject.com
+Test your frame development locally:
+1. Use [Frame Debugger](https://www.framesjs.org/debugger) for testing
+2. Cast your frame URL in Farcaster for live testing  
+3. Check frame metadata at `/.well-known/farcaster.json`
 
 ---
 
 **Made with ❤️ for Base Onchain Summer 2024**
 
-*Bridging the future, one transaction at a time* 🌉
+*Bringing cross-chain DeFi to social interactions* 🌉✨
