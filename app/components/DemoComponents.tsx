@@ -277,13 +277,6 @@ export function Home() {
         </div>
       ) : (
         <div className="space-y-4">
-          {/* Connection status indicator */}
-          <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-            <span className="text-green-400 text-sm">
-              ✓ Wallet connected: {address ? formatWalletAddress(address) : 'Unknown'}
-            </span>
-          </div>
-          
           {/* LiFi Widget */}
           <LiFiWidget 
             integrator="lifi-mini-v2"
