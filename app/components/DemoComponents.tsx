@@ -279,19 +279,9 @@ export function Home() {
         <div className="space-y-4">
           {/* Connection status indicator */}
           <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-            <div className="flex items-center justify-between">
-              <span className="text-green-400 text-sm">
-                ✓ Wallet connected: {address ? formatWalletAddress(address) : 'Unknown'}
-              </span>
-              <Button 
-                onClick={resetConnection} 
-                variant="ghost" 
-                size="sm"
-                className="text-green-400 hover:text-green-300"
-              >
-                Refresh
-              </Button>
-            </div>
+            <span className="text-green-400 text-sm">
+              ✓ Wallet connected: {address ? formatWalletAddress(address) : 'Unknown'}
+            </span>
           </div>
           
           {/* LiFi Widget */}
