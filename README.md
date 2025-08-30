@@ -146,11 +146,6 @@ This is the core LI.FI Diamond entryway contract that powers all cross-chain ope
 - **[OnchainKit](https://onchainkit.xyz/)** - Base development tools
 - **[Project Devfolio](https://devfolio.co/projects/lifi-mini-aa50)** - Detailed project overview
 
-## 🏆 Achievements
-
-- **🥇 Top 5 New Mini Apps** - Onchain Summer Competition
-- **🔥 Featured Project** - Devfolio Showcase
-- **⚡ Seamless UX** - Zero-friction cross-chain operations
 
 ## 🤝 Contributing
 
@@ -184,3 +179,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ for Onchain Summer 2025**
 
 *Making cross-chain DeFi social, seamless, and accessible to everyone.*
+
