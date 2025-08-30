@@ -4,6 +4,7 @@
 
 A powerful Farcaster mini app built for **Onchain Summer** that brings seamless cross-chain swapping, bridging, and token transfers directly into your social experience on Base.
 **Project Link Onchain Summer Awards :** https://devfolio.co/projects/lifi-mini-aa50
+
 [![Built for Onchain Summer](https://img.shields.io/badge/Built%20for-Onchain%20Summer-blue)](https://onchainsummer.xyz/)
 [![Farcaster](https://img.shields.io/badge/Farcaster-Mini%20App-purple)](https://farcaster.xyz/)
 [![Base](https://img.shields.io/badge/Base-Powered-blue)](https://base.org/)
@@ -179,5 +180,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ for Onchain Summer 2025**
 
 *Making cross-chain DeFi social, seamless, and accessible to everyone.*
+
 
 
